@@ -10,6 +10,14 @@ const addCarts = (data) => {
     const stringifyData = JSON.stringify(allData)
     fs.writeFileSync(dataPath, stringifyData)
 }
+const getProductDetail = (id) => {
+    const products = getProducts();
+    const product = products.findIndex(p => p.id === Number.parseInt(id));
+    if (product === -1) {
+        throw new Error("no product found with id" + id);
+    }
+    return products[product]
+}
 const changeCartQty = ({ id, qty }) => {
     const existingCarts = getCarts();
     if (existingCarts.length === 0) {
@@ -60,4 +68,5 @@ module.exports = {
     removeCarts,
     addCarts,
     changeCartQty,
+    getProductDetail,
 }

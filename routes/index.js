@@ -8,6 +8,11 @@ router.get("/products", (req, res) => {
     return res.json(products);
 })
 
+router.get("/products/:id", (req, res) => {
+    const products = utils.getProductDetail(req.params.id)
+    return res.json(products);
+})
+
 router.get("/carts", (req, res) => {
     const carts = utils.getCarts()
     return res.json(carts);
